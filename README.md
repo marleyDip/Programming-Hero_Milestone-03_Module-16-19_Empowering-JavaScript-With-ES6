@@ -102,6 +102,10 @@ Programming-Hero_Milestone-03_Module-16-19_Empowering-JavaScript-With-ES6
 │
 ├── Module-19/
 │
+├── index.html
+│
+├── style.css
+│
 └── README.md
 ```
 
@@ -109,7 +113,7 @@ Programming-Hero_Milestone-03_Module-16-19_Empowering-JavaScript-With-ES6
 
 # 🎯 Learning Goals
 
-Throughout these modules I practiced how to:
+Throughout these modules, I practiced how to:
 
 - Write modern JavaScript using ES6
 - Understand JavaScript execution behavior
