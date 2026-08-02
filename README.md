@@ -9,6 +9,8 @@ This module introduces the core features of **ECMAScript 6 (ES6)**, helping you 
 ## 🌐 🔗 💻 Live Demo
   ***[Click Here to View Live Demo](https://marleydip.github.io/Programming-Hero_Milestone-03_Module-16-19_Empowering-JavaScript-With-ES6/)*** *(Ctrl + Click to open in a new tab!)*
 
+---
+
 ## 📚 Topics Covered
 
 ### 🔹 Variable Declarations
