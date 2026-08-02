@@ -1,0 +1,22 @@
+Why Was ES6 needed?
+
+ES6, also known as ECMAScript 2015, was needed to address several limitations and challenges in JavaScript that developers faced with earlier versions. Here are some key reasons why ES6 was introduced:
+
+    1. Verbose, callback-heavy code
+    2. No block scoping
+    3. No Native Module system
+    4. Clunky OPP syntax
+    5. Awkward string handling
+    6. Weak async handling
+
+Key ES6 Features
+The additions that reshaped modern JavaScript
+
+    1. let & const
+    2. Arrow Functions
+    3. Template Literals
+    4. Classes
+    5. Destructuring Assignment
+    6. Default & Rest/Spread Parameters
+    7. Modules
+    8. Promises

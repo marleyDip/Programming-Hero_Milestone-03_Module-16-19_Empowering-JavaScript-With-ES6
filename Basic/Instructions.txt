@@ -1,0 +1,60 @@
+ES6: Modern JavaScript-এর পথে প্রথম ধাপ 🚀
+
+
+var থেকে let আর const, function থেকে arrow function, string থেকে template literal—আজকের মডিউলেই শুরু হবে আধুনিক JavaScript (ES6)-এর যাত্রা। এখানেই শিখবে কেন let ও const এসেছে, কিভাবে default parameter দিয়ে কোড আরও স্মার্ট করা যায়, কীভাবে template string দিয়ে ডাইনামিক টেক্সট তৈরি করতে হয়, আর spread ও rest operator ব্যবহার করে array এবং object নিয়ে সহজে কাজ করা যায়।
+
+
+
+এরপর আসবে arrow function, destructuring, object methods, optional chaining, এবং object looping-এর মতো প্রতিদিনের JavaScript development-এ সবচেয়ে বেশি ব্যবহৃত কনসেপ্টগুলো। এগুলো শুধু পরীক্ষার জন্য নয়—React, Next.js কিংবা আধুনিক JavaScript-এর প্রায় সব জায়গাতেই বারবার কাজে লাগবে।
+
+
+
+তবে একটা বিষয় মনে রাখবে—ES6 একদিনে শেষ হয়ে যাওয়ার মতো কোনো বিষয় না। আজকে যেগুলোর সাথে পরিচয় হবে, পরবর্তী মাইলস্টোনগুলোতে সেগুলোর ব্যবহার আরও গভীরভাবে দেখবে। যত বেশি JavaScript লিখবে, তত বেশি ES6-এর প্রয়োজনীয়তা বুঝতে পারবে।
+
+
+
+এই মডিউলে যা যা শিখবে
+
+ => var, let এবং const-এর পার্থক্য
+ => Intro — Difference Between Var, Let, And Const
+ => Default Parameters — for not-provided values
+ => Template Literals — Multiline & Dynamic String
+ 
+ => Spread & Rest Operators — Array Max and Array, Object Copy
+ => Arrow Functions — Syntax, Parameters, Return
+ => Object & Array Destructuring (Advanced)
+ 
+ => Object Methods (keys, values, entries, delete, seal, freeze)
+ => Nested Object, Optional Chaining & Object Looping
+
+
+কোনো কিছু বুঝতে সমস্যা হলে এই ৫টি ধাপ অনুসরণ করো
+
+১. ভিডিও একাধিকবার দেখো এবং নিজের মতো করে নোটস তৈরি করো।
+
+২. Google-এ সার্চ করো, MDN Documentation পড়ো, কিংবা YouTube-এ অন্যভাবে ব্যাখ্যা দেখো।
+
+৩. তারপরও সমস্যা থাকলে আমাদের Facebook Group-এ গিয়ে আগে ৫ মিনিট সার্চ বা স্ক্রল করে দেখো একই সমস্যা কেউ করেছে কিনা। পেয়ে গেলে রিপ্লাইগুলো পড়ে দেখো। না পেলে সুন্দরভাবে তোমার প্রশ্ন লিখে পোস্ট করো।
+
+৪. প্রয়োজন হলে Support Session-এ জয়েন করে Mentor-এর কাছ থেকে সরাসরি সাহায্য নাও।
+
+৫. আর যারা ভালোভাবে বুঝেছো কিন্তু আরও কনফিডেন্ট হতে চাও, তারা অবশ্যই Conceptual/Revision Session-এ অংশগ্রহণ করবে। বারবার প্র্যাকটিস আর রিভিশনই ES6-এ দক্ষ হওয়ার সবচেয়ে ভালো উপায়।
+
+
+
+মনে রাখবে: ES6 শুধু এই মডিউলের জন্য নয়। সামনে React, Next.js এবং পুরো Full Stack Development-এ এই কনসেপ্টগুলো তোমার প্রতিদিনের সঙ্গী হবে। তাই মুখস্থ নয়—বোঝার চেষ্টা করো, নিজে কোড লেখো, আর যত বেশি সম্ভব প্র্যাকটিস করো। 💜
+
+
+
+এই মডিউলে যা যা শিখবে
+
+ => Intro — Difference Between Var, Let, And Const
+ => Default Parameters — for not-provided values
+ => Template Literals — Multiline & Dynamic String
+ 
+ => Spread & Rest Operators — Array Max and Array, Object Copy
+ => Arrow Functions — Syntax, Parameters, Return
+ => Object & Array Destructuring (Advanced)
+ 
+ => Object Methods (keys, values, entries, delete, seal, freeze)
+ => Nested Object, Optional Chaining & Object Looping
