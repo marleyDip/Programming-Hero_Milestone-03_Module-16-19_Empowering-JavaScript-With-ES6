@@ -7,6 +7,11 @@ This repository contains my complete practice, class exercises, coding challenge
 
 ---
 
+## 🔗 🌐 Live Demo
+  ***[Click Here to View Live Demo](https://marleydip.github.io/Programming-Hero_Milestone-03_Module-16-19_Empowering-JavaScript-With-ES6/)*** *(Ctrl + Click to open in a new tab!)*
+  
+---
+
 ## 📖 Modules Covered
 
 ### 📌 Module 16 — ES6 Fundamentals
