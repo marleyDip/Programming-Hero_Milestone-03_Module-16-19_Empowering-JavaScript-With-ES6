@@ -76,9 +76,15 @@ After completing this module, I can:
 ```text
 Module-16
 │
-├── Practice
-├── Class-Code
-├── Exercises
+├── Basic
+├── 1.var_let_and_const.js
+├── 2.default_parameter.js
+├── 3.template_string.js
+├── 4.spread_and_rest_operator.js
+├── 5.arrow_function.js
+├── 6.destructuring.js
+├── 7.object_method.js
+├── 8.nested_object_optional_chaining_and_object_looping.js
 └── README.md
 ```
 
