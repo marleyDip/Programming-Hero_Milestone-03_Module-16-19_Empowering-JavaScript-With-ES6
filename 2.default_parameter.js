@@ -82,8 +82,10 @@ console.log(multiplyWithNull(5)); // 5 (b defaults to 1)
 
 // Old way of setting default parameters before ES6
 // Without default parameter, using logical OR operator
+// Falsy value - false, 0, -0, 0n, "", null, undefined, NaN
+// Truthy value - {}, [], " ", "false", "0", true, non-zero number
 function multiplyWithoutDefault(a, b) {
-  b = b || 1; // If b is falsy (undefined, null, 0, false), it defaults to 1
+  b = b || 1; // If b is falsy (undefined, null, 0, false, ""), it defaults to 1
   return a * b;
 }
 
