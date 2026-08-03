@@ -4,11 +4,20 @@
  *
  * Template strings (officially called Template Literals) are string literals enclosed in backticks (`) instead of single or double quotes, allowing you to embed variables, perform expression, and create multi-line strings easily.
  *
+ * embed = দৃঢ়ভাবে নিহিত করা
  *
  * Summary of Rules:
  * 1. Always wrap the text in backticks (`).
  * 2. Place any dynamic JS logic or variables within ${}.
  * You can use single quotes (') or double quotes (") inside your template string without escaping them.
+ *
+ * escape \ => backslash (\) is the escape character used to convert special characters into literal string characters or to introduce special formatting commands.
+ *
+ * // Escaping double quotes
+ * let quote = "He said, \"JavaScript is awesome!\"";
+ *
+ * // Escaping single quotes
+ * let message = 'It\'s a beautiful day for coding.';
  *
  */
 
