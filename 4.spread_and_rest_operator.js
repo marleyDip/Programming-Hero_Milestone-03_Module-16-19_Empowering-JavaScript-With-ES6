@@ -37,7 +37,7 @@ const spreadNumbersMerge = [...spreadNumbersAdd, ...spreadNumbers];
 
 console.log(spreadNumbersMerge); // [ 2, 5, 10, 20, 30, 40, 50, 2400, 4800, 9600, 10, 20, 30, 40, 50, 2400 ]
 
-// Now object
+/* ===== Spread Object ===== */
 let student = {
   name: "deep",
   age: 27,
