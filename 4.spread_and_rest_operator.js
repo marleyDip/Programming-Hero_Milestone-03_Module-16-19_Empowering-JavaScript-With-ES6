@@ -202,7 +202,7 @@ console.log(sum(1, 2, 3, 4)); // 10
 
 // 2. Array Destructuring
 // You can extract specific items from an array and group all the leftover items into a brand new array.
-// We used any name for array destructuring
+// We used any variable name for array destructuring and rest operator
 
 const fruits = ["apple", "mango", "orange", "grape", "banana"];
 const [first, second, ...restFruits] = fruits;
@@ -213,8 +213,7 @@ console.log(restFruits); // [ 'orange', 'grape', 'banana' ]
 
 // 3. Object Destructuring
 // You can extract specific properties from an object and pack the remaining key-value pairs into a separate object.
-// extract = সজোরে টানিয়া বাহির করা, নির্যাস eliminate = অপসারিত করা, নিষ্কাশন করা Chosen or Selected = বাছাই করা
-// We must use specific key name for object destructuring
+// We must use variable name specific same as object property or key for object destructuring & any valid variable name for rest operator
 
 const userProfile = { id: 101, username: "alice", role: "admin", age: 28 };
 const { username, role, ...additionalInfo } = userProfile;
