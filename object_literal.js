@@ -105,6 +105,9 @@ console.log(system); // { status: 'active' }
  *
  * Can use variables?    ❌ No                       Yes
  *
+ * _ is called underscore, low dash or low line
+ * - is called hyphens
+ * -- is called em dash
  */
 
 const userProfile = {
