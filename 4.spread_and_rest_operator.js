@@ -212,7 +212,7 @@ console.log(second); // 'mango'
 console.log(restFruits); // [ 'orange', 'grape', 'banana' ]
 
 // 3. Object Destructuring
-// You can extract specific properties from an object and pack the remaining key-value pairs into a separate object.
+// You can extract specific properties from an object and pack the remaining key-value pairs into a separate object. extract = সজোরে টানিয়া বাহির করা, নির্যাস eliminate = অপসারিত করা, নিষ্কাশন করা Chosen or Selected = বাছাই করা
 // We must use specific key name for object destructuring
 
 const userProfile = { id: 101, username: "alice", role: "admin", age: 28 };
