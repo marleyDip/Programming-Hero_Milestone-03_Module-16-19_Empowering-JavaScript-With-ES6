@@ -111,6 +111,12 @@ console.log(arrowMyselfWithVar()); // I am Md Sofian Hasan.
  *
  * () => statement / Logic / Expression / block body
  *
+ *
+ * When to Use Arrow Functions:
+ * - Array methods like map(), filter(), find(), reduce()
+ * - Callback functions
+ * - React components and event handlers (very common)
+ *
  */
 
 // Multiple parameters
@@ -138,6 +144,7 @@ const multiply = (a, b) => a * b;
 
 // Note: To implicitly return an object literal, you must wrap it in parentheses so the compiler doesn't mistake the object's curly braces for a function block.
 
+// Returning an Object
 const getUser = (name) => ({ user: name });
 
 console.log(getUser("Its Me!")); // { user: 'Its Me!' }
@@ -150,6 +157,7 @@ console.log(getUser("Its Me!")); // { user: 'Its Me!' }
  * Arrow Functions:
  *
  * this Binding - Lexical (Inherited from the surrounding parent scope).
+ * Hoisting - Function expressions are not hoisted.
  * Constructors - Cannot be called with new (throws TypeError).
  * arguments Object - Do not have their own arguments array-like object.
  * Generators - Cannot use yield within the body.
@@ -158,8 +166,53 @@ console.log(getUser("Its Me!")); // { user: 'Its Me!' }
  * Regular Functions:
  *
  * this Binding - Dynamic (Depends entirely on how the function is called).
+ * Hoisting - Function declarations are hoisted.
  * Constructors - Can be used as constructors to build objects.
  * arguments Object - Have access to the local arguments object.
  * Generators - Can be used as generator functions.
  *
  */
+
+// Returning an Object
+// Wrap the object in parentheses.
+const createUser = (name, age) => ({
+  name: name,
+  age: age,
+});
+
+console.log(createUser("Sofian", 22)); // { name: 'Sofian', age: 22 }
+
+// Without the parentheses:
+// This does not return the object because JavaScript treats {} as a function body.
+
+/* const createUser1 = (name, age) => {
+    name: name, // here ; expected instead of ,
+    age: age
+}; */
+
+const isEven = (number) => number % 2 === 0;
+console.log(isEven(15)); // false
+
+const area = (length, width) => length * width;
+console.log(area(10, 5)); // 50
+
+const max = (a, b) => (a > b ? a : b);
+console.log(max(10, 15)); // 15
+
+const upperCase = (text) => text.toUpperCase();
+console.log(upperCase("javascript")); // JAVASCRIPT
+
+// When to Use Arrow Functions
+
+// Array methods like map(), filter(), find(), reduce()
+// Callback functions
+// React components and event handlers (very common)
+
+const num = [1, 2, 3, 4];
+
+const doubled = num.map((n) => n * 2);
+console.log(doubled); // [ 2, 4, 6, 8 ]
+
+setTimeout(() => {
+  console.log("Hello");
+}, 2000); // print Hello after 2s
