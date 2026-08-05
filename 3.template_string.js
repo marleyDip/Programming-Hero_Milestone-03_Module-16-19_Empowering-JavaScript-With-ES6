@@ -19,6 +19,15 @@
  * // Escaping single quotes
  * let message = 'It\'s a beautiful day for coding.';
  *
+ *
+ * Common Mistakes:
+ * - ❌ Using Single Quotes Instead of Backticks
+ * - ${} only works inside backticks.
+ * - ❌ Forgetting ${}
+ *
+ * Why Use Template Strings?
+ * - It's shorter, cleaner, and easier to read.
+ *
  */
 
 let myName = "Deep";
@@ -100,6 +109,22 @@ console.log(
   shout,
 );
 
+const greet = (name) => `Hello, ${name}`;
+console.log(`${greet("Sofian")}!`); // Hello, Sofian!
+
+// Object Properties
+const user = {
+  name: "Sofian",
+  age: 22,
+};
+
+console.log(`${user.name} is ${user.age} years old.`);
+
+// Array Elements
+const fruits = ["Apple", "Banana", "Mango"];
+
+console.log(`My favorite fruit is ${fruits[1]}.`);
+
 /* ===== 3. Multi-line Strings ===== */
 // With standard quotes, adding a new line requires escape characters like \n. Template literals allow you to break lines directly inside the code without breaking the syntax.
 
@@ -117,3 +142,132 @@ const newHTML = `<div>
 
 console.log("Using new way - Multi-line Strings");
 console.log(newHTML);
+
+// Before ES6, writing multi-line strings required \n.
+// Without Template Strings
+const text = "Hello\nWelcome to JavaScript\nHappy Coding!";
+console.log(text);
+// Hello
+// Welcome to JavaScript
+// Happy Coding!
+
+// With Template Strings. Notice that line breaks are preserved automatically.
+const textTemplate = `
+Hello
+Welcome to JavaScript
+Happy Coding!
+`;
+
+console.log(textTemplate);
+
+// Hello
+// Welcome to JavaScript
+// Happy Coding!
+
+/* ===== Real-World Example ===== */
+//  HTML Template
+// This is very common when generating HTML dynamically.
+const userName = "Md. Sofian Hasan";
+const userAge = 27;
+
+const html = `
+<div class="card">
+  <h2>Name: ${userName}</h2>
+  <p>Age: ${userAge}</p>
+</div>
+`;
+
+console.log(html);
+
+/* <div class="card">
+  <h2>Name: Md. Sofian Hasan</h2>
+  <p>Age: 27</p>
+</div> */
+
+// Combining with Loops
+const languages = ["HTML", "CSS", "JavaScript"];
+
+for (const language of languages) {
+  console.log(`I love ${language}`);
+  console.log("I love" + " " + language);
+  console.log("I love", language);
+  // console.log("I love " + language);
+}
+
+// I love HTML
+// I love CSS
+// I love JavaScript
+
+// Combining with Ternary Operator
+const myAge = 40;
+
+console.log(`You are ${myAge >= 18 ? "an Adult" : "a Minor"}`);
+
+// Combining with Arrow Functions
+const square = (number) => `${number} square is ${number * number}`;
+
+console.log(square(7));
+
+/* ===== Practice Problems ===== */
+// Create variables name and country, then print: "My name is Sufian and I live in Bangladesh." using a template string.
+const myname = "Sufian";
+const myCountry = "Bangladesh";
+console.log(`My name is ${myname} and I live in ${myCountry}.`); // My name is Sufian and I live in Bangladesh.
+
+// Create variables price = 800 and discount = 120. Print the final price using ${}.
+const sell = 800;
+const discount = 120;
+
+console.log(`Final price: ${sell - discount}.`); // Final price: 680.
+
+//Write an arrow function that returns Hello, ${name}!.
+const sayWelcome = (name) => `Hello, ${name}`;
+console.log(`${sayWelcome("Deep")}!`); // Hello, Deep!
+
+// Create an object: Print: "Rahim scored 92 marks." using a template string.
+const student = {
+  name: "Rahim",
+  marks: 92,
+};
+console.log(`${student.name} scored ${student.marks} marks.`); // Rahim scored 92 marks.
+
+// Create an array: Print: "My favorite color is Green."
+const colors = ["Red", "Green", "Blue"];
+console.log(`My favorite color is ${colors[1]}.`); // My favorite color is Green.
+
+// Create a multi-line address using a template string.
+const address = {
+  street: "123 Innovation Way",
+  suite: "Suite 400",
+  city: "Tech City",
+  postcode: "12345",
+};
+
+const formattedAddress = `${address.street}
+${address.suite}
+${address.city}
+${address.postcode}
+`;
+
+console.log(formattedAddress);
+/* 123 Innovation Way
+Suite 400
+Tech City
+12345 */
+
+// Build this HTML using template strings:
+const developerName = "Sufian";
+const position = "Web Developer";
+
+const htmlDynamic = `<div class="profile">
+  <h2>${developerName}</h2>
+  <p>${position}</p>
+</div>
+`;
+
+console.log(htmlDynamic);
+
+/* <div class="profile">
+  <h2>Sufian</h2>
+  <p>Web Developer</p>
+</div> */

@@ -15,6 +15,21 @@
 // Destructuring mostly used in Object.
 // It is not used much in arrays. We do not need sequentially destructure.
 
+/**
+ *
+ * Feature	             Arrays	                     Objects
+ * Basic destructuring	 const [a, b] = arr	         const { name, age } = obj
+ * Skip values	         const [a, , c] = arr	       Not applicable
+ * Default values	       const [a = 1] = arr	       const { city = "NY" } = obj
+ * Rename variables	     Not common	                 const { name: fullName } = obj
+ * Rest operator	       const [a, ...rest] = arr	   const { name, ...rest } = obj
+ * Nested destructuring	 Yes	                       Yes
+ * Function parameters	 Yes	                       Yes
+ *
+ * Destructuring makes your code shorter, more readable, and is widely used in modern JavaScript, especially with APIs, React props, function parameters, and ES6+ codebases.
+ *
+ */
+
 /* ===== 1. Destructuring the Array ===== */
 const numbers = [10, 20, 30, 40, 50];
 
@@ -61,7 +76,7 @@ console.log(name, roll, student[studentId]); // dip 384 384
 
 // const { studentName } = student; // undefine
 
-// override or modified variable name instead of key name
+// Rename Variables name instead of key name variable
 const { age, name: studentName } = student;
 
 console.log(studentName);
@@ -124,6 +139,10 @@ displayStudent(student);
  *
  * Destructuring assignment is a JavaScript syntax introduced in ES6 that allows you to unpack values from arrays or properties from objects directly into distinct variables.
  *
+ * Destructuring in JavaScript is a feature that allows you to extract values from arrays or properties from objects and assign them to variables in a concise way.
+ *
+ * Destructuring is a JavaScript syntax that lets you unpack values from arrays or extract properties from objects into separate variables.
+ *
  * It does not modified the original data structure, making your code significantly cleaner and faster to read.
  *
  * Object Destructuring:
@@ -168,7 +187,7 @@ const user = { userName: "Alex", userAge: 28, country: "Bangladesh" };
 const { userName, userAge } = user;
 console.log(userName); // "Alex"
 
-// Assigning to a new variable name (aliasing)
+// Assigning to a new variable name (aliasing) - Rename Variables
 const { country: userCountry } = user;
 console.log(userCountry); // "Bangladesh"
 
@@ -187,17 +206,51 @@ const {
 
 console.log(firstTag); // "tech"
 
+const studentPro = {
+  name: "John",
+  marks: {
+    math: 90,
+    science: 95,
+  },
+};
+
+const {
+  name: studentProName,
+  marks: { math, science },
+} = studentPro;
+
+console.log(studentProName); // John
+console.log(math); // 90
+console.log(science); // 95
+
 /* ===== Array Destructuring ===== */
 // Array destructuring extracts data based on the index position. You can use any variable names you want.
+
+// Instead of accessing elements by index: Using destructuring
 const colors = ["red", "green", "blue"];
 
 // Basic destructuring
 const [firstColor, secondColor] = colors;
 console.log(firstColor); // "red"
 
-// Skipping values using commas
+// Skipping values using commas - Skip Elements
 const [, , thirdColor] = colors;
 console.log(thirdColor); // "blue"
+
+// Default Values
+const color = ["yellow"];
+const [primary, secondary = "sky"] = color;
+
+console.log(primary); // yellow
+console.log(secondary); // sky
+
+// Nested Arrays
+const num = [1, [2, 3]];
+const [x, [y, z]] = num;
+
+console.log(x); // 1
+console.log(y); // 2
+console.log(z); // 3
 
 // Swapping variables seamlessly without a temporary variable
 let a = 1,
@@ -208,10 +261,12 @@ console.log(a); // 2
 
 /* ===== The Rest Syntax (...) ===== */
 // You can destructure an object directly within a function's signature, a technique heavily relied on in modern web frameworks.
-function displayProfile({ name, age }) {
-  console.log(`${name} is ${age} years old.`);
+
+// function displayProfile({ name, age }) { // undefined
+function displayProfile({ userName, userAge }) {
+  console.log(`${userName} is ${userAge} years old.`); // Alex is 28 years old.
 }
-displayProfile(user); // "Alex is 28 years old."
+displayProfile(user);
 
 /* ===== Function Parameter Destructuring ===== */
 // The Rest Syntax (...)
@@ -233,3 +288,41 @@ function sum(...numbers) {
 }
 
 console.log(sum(1, 2, 3, 4)); // 10
+
+// Destructuring in Arrow Function Parameters
+const person = {
+  name: "Marley Dip",
+  age: 35,
+};
+
+const displayPerson = ({ name, age }) =>
+  console.log(`${name} is ${age} years old.`); // Marley Dip is 35 years old.
+
+displayPerson(person);
+
+// Rename Variable
+const displayPersonRenameValue = ({ name: personName, age: personAge }) =>
+  console.log(`${personName} is ${personAge} years old.`); // Marley Dip is 35 years old.
+
+displayPersonRenameValue(person);
+
+// To update an object without altering the original using destructuring, you can use the object spread operator (...) inside a new object literal.
+
+// Destructure the original properties and override the age
+const update = { ...person, age: 40 };
+
+console.log(person); // { name: 'Marley Dip', age: 35 } (Unchanged)
+console.log(update); // { name: 'Marley Dip', age: 40 } (Updated copy)
+
+// Doing it inside a function
+// If you want to keep using your updatePerson function format, you can destructure the properties in the function body and return a new object.
+
+const updatePerson = (originalObject, newAge) => {
+  // Destructures all original fields, then overwrites age
+  return { ...originalObject, age: newAge };
+};
+
+const nextYearPerson = updatePerson(person, 45);
+
+console.log(nextYearPerson); // { name: 'Marley Dip', age: 45 }
+console.log(person); // { name: 'Marley Dip', age: 35 }

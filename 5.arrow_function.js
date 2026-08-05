@@ -102,6 +102,8 @@ console.log(arrowMyselfWithVar()); // I am Md Sofian Hasan.
  *
  * Arrow Function
  *
+ * An Arrow Function is a shorter syntax for writing functions.
+ *
  * An arrow function is a compact alternative to a traditional function expression introduced in ES6 (ECMAScript 2015).
  *
  * They provide a shorter syntax and change how the this keyword behaves inside the function.
@@ -117,24 +119,37 @@ console.log(arrowMyselfWithVar()); // I am Md Sofian Hasan.
  * - Callback functions
  * - React components and event handlers (very common)
  *
+ * Common Mistakes:
+ * - ❌ Forgetting return
+ * - ❌ Missing parentheses for multiple parameters
+ *
+ * Summary:
+ * - Use => to create an arrow function.
+ * - No parameters: () => {}
+ * - One parameter: param => {}
+ * - Multiple parameters: (a, b) => {}
+ * - Use implicit return for a single expression: const add = (a, b) => a + b
+ * - Wrap returned objects in parentheses: () => ({ name: "Sufian" })
+ * - Arrow functions don't have their own this; they inherit it from the surrounding scope.
+ *
  */
 
-// Multiple parameters
+// Multiple parameters - Parentheses are required.
 const add = (a, b) => {
   return a + b;
 };
 
-// Single parameter (parentheses can be omitted)
+// Single parameter - Parentheses are optional (parentheses can be omitted).
 // const double = x => x * 2;
 const double = (x) => x * 2;
 
-// No parameters (parentheses are required)
+// No parameter - Use empty parentheses (parentheses are required).
 const sayHello = () => "Hello world!";
 
-// Implicit Return
+// Implicit Return (Single Expression)
 // If your function body contains only one expression, you can remove the curly braces {} and the return keyword. The value is returned automatically.
 
-// Block body (explicit return)
+// Block body (explicit return) - Normal Return
 const substrate = (a, b) => {
   return a - b;
 };
@@ -144,7 +159,15 @@ const multiply = (a, b) => a * b;
 
 // Note: To implicitly return an object literal, you must wrap it in parentheses so the compiler doesn't mistake the object's curly braces for a function block.
 
-// Returning an Object
+// Default Parameters
+const greet = (name = "Guest") => {
+  return `Hello ${name}`;
+};
+
+console.log(greet()); // Hello Guest
+console.log(greet("Sufian")); // Hello Sufian
+
+// Returning an Object - Wrap the object in parentheses.
 const getUser = (name) => ({ user: name });
 
 console.log(getUser("Its Me!")); // { user: 'Its Me!' }
@@ -216,3 +239,222 @@ console.log(doubled); // [ 2, 4, 6, 8 ]
 setTimeout(() => {
   console.log("Hello");
 }, 2000); // print Hello after 2s
+
+/* ===== Practice Questions ===== */
+// Write an arrow function that returns the square of a number.
+const squareNum = (num) => console.log(`${num} square is ${num * num}`);
+squareNum(10); // 10 square is 100
+
+// Write an arrow function that checks if a number is positive.
+// Here used isPositive for boolean data type
+const isPositive = (num) => num > 0;
+
+console.log(isPositive(5)); // true
+console.log(isPositive(-3)); // false
+console.log(isPositive(0)); // false
+
+// Implicit Return: Since the function body is a single expression, the return keyword is omitted.
+// Single Parameter: Parentheses around num are optional when there is only one parameter.
+// Boolean Evaluation: The > (greater than) operator automatically resolves to true if the number is positive, and false if it is zero or negative.
+
+const positiveNum = (num) => {
+  if (num > 0) {
+    console.log(`${num} is a Positive Integer`);
+  } else {
+    console.log(
+      `${num === 0 ? `${num} is a Negative Number. Because 0 also falsy value in JS.` : `${num} is a Negative Number.`}`,
+    );
+  }
+};
+
+positiveNum(15);
+positiveNum(0);
+positiveNum(-5);
+
+// Write an arrow function that returns the larger of two numbers.
+// Using a Ternary Operator (Implicit Return)
+const largeNum = (a, b) => (a > b ? a : b);
+console.log(largeNum(10, 12)); // 12
+
+//  Using Math.max (Implicit Return)
+const getMax = (a, b) => Math.max(a, b);
+console.log(getMax(42, 36)); // 42
+
+// Using an If/Else Statement (Explicit Return)
+// If you prefer a multi-line format with block curly braces, you must include the return keyword explicitly.
+const regularMaxFunction = (a, b) => {
+  if (a > b) {
+    console.log(`${a} is greater then ${b}`);
+  } else {
+    console.log(`${a} is smaller then ${b}`);
+  }
+};
+
+regularMaxFunction(-3, -1);
+regularMaxFunction(-1, -3);
+
+// Write an arrow function that takes an array of numbers and returns their sum.
+const sumOfNum = (nums) => {
+  let sum = 0;
+  for (const num of nums) sum += num;
+  return sum;
+};
+
+console.log(sumOfNum([10, 20, 30]));
+
+// Using reduce() (Implicit Return)
+const sumOfArray = (arr) => arr.reduce((sum, num) => sum + num, 0);
+console.log(sumOfArray([1, 2, 3, 4])); // 10
+
+// Handling Empty Arrays Safely
+const sumArray = (arr) =>
+  arr
+    .filter((num) => typeof num === "number")
+    .reduce((sum, num) => sum + num, 0);
+
+console.log(sumArray([5, "hello", 5])); // 10
+
+//  Using a forEach Loop (Explicit Return)
+const sumOfArr = (array) => {
+  let total = 0;
+  array.forEach((element) => (total += element));
+  return total;
+};
+
+console.log(sumOfArr([10, 20, 30])); // 60
+
+// Write an arrow function that takes a name and returns "Welcome, <name>!".
+// Using String Concatenation
+// const greetWelcome = (name = "Deep") => console.log("Welcome, " + name + "!");
+// const greetWelcome = (name = "Deep") => console.log("Welcome,", name, "!");
+
+// Handling Empty Inputs (Fallback)  Using Template Literals
+const greetWelcome = (name) => console.log(`Welcome, ${name || "Guest"}!`);
+
+greetWelcome("Sofian"); // Welcome, Sofian!
+greetWelcome(); // Welcome, Guest!
+
+// Convert these regular functions into arrow functions: multiply(a, b), isPrime(number), calculateDiscount(price, discount), reverseString(text), findLargest(arr)
+const multiplyOfNum = (a, b) => a * b;
+console.log(multiplyOfNum(9, 5)); // 45
+
+// Whole numbers are a basic set of numbers that include zero and all positive counting numbers (0, 1, 2, 3, 4, ...). They do not include any fractions, decimals, or negative values.
+// A prime number is a whole number greater than 1 that can only be divided evenly by 1 and itself.
+const isPrime = (number) => {
+  if (number <= 1) return "Prime number is greater than 1";
+
+  for (let i = 2; i * i < number; i++) {
+    if (number % i === 0)
+      return `${number} is not Prime number. It is divided by ${i}.`;
+  }
+
+  return `${number} is a prime number.`;
+};
+
+console.log(isPrime(11));
+console.log(isPrime(15));
+console.log(isPrime(7));
+console.log(isPrime(24));
+
+// Modern Array Method Syntax (Single Line)
+const isPrimeEvery = (num) =>
+  num > 1 &&
+  Array.from({ length: Math.floor(Math.sqrt(num)) - 1 }, (_, i) => i + 2).every(
+    (i) => num % i !== 0,
+  );
+
+// Explanation: length: Math.floor(4.79) - 1, length: 4 - 1 => 3
+// (_, i) means index number start at 0 and 0 + 2 = [2, 3, 4]
+// Array.from({length: 3 }, (_, i) => i = 0 + 2) => [2, 3, 4]
+
+// The .every() method checks if all items in our generated array pass a specific test.
+// [2, 3, 4] => 23 % 2 !== 0 => pass, then check 3 and finally 4, it pass the all index test return true; not more than index 4 like i = 5 or 6
+// it fall the test then early return like false immediately, not check index 3, 4
+
+console.log(isPrimeEvery(23)); // true
+console.log(isPrimeEvery(20)); // false
+
+// Calculate percentage of discount and extract final price
+const calculateDiscount = (price, discount) => price - price * (discount / 100);
+console.log(calculateDiscount(100, 20)); // 80
+console.log(calculateDiscount(80, 20)); // 64
+
+// Reverse a String
+const reverseString = (text) => text.split("").reverse().join("");
+console.log(reverseString("hello")); // Output: "olleh"
+
+// Without built-in-method, it uses for loop
+const reverseChar = (text) => {
+  let reversed = "";
+
+  // Its Speed / Performance = Fastest and Memory Usage = Low
+  // Here add char to the end, thats why index start at last
+  for (let i = text.length - 1; i >= 0; i++) {
+    reversed += text[i];
+  }
+
+  // Its Speed / Performance = Moderate and Memory Usage = Low
+  // for (const char of text) {
+  //   // Instead of adding the new letter to the end of our string, it places the new letter at the front.
+  //   // 1st Loop (char = 'c'): 'c' + ""  => reversed becomes "c"
+  //   // 2nd Loop (char = 'o'): 'o' + "c" => reversed becomes "oc"
+  //   reversed = char + reversed;
+  //   // reversed += char; // coding
+  // }
+
+  // Its Speed / Performance = Moderate and Memory Usage = Low
+  // for (let i = 0; i < text.length; i++) {
+  //   // Manually force to 'c' + ''
+  //   reversed = text[i] + reversed;
+  //   // reversed += text[i]; // coding
+  // }
+
+  return reversed;
+
+  //  Its Speed / Performance = Slowest and Memory Usage = High (Creates an extra array)
+  // let reservedArray = [];
+  // for (let i = 0; i < text.length; i++) {
+  //   // Loop 1 (i = 0, char = 'c'): Array becomes ['c']
+  //   // Loop 2 (i = 1, char = 'o'): 'o' goes to the front. Array becomes ['o', 'c']
+  //   // Loop 6 (i = 5, char = 'g'): 'g' goes to the front. Array becomes ['g', 'n', 'i', 'd', 'o', 'c']
+  //   reservedArray.unshift(text[i]);
+  // }
+  // // Final reservedArray = ['g', 'n', 'i', 'd', 'o', 'c']
+  // // return reservedArray.join(); // g,n,i,d,o,c
+  // // return reservedArray.join(" - "); // g - n - i - d - o - c
+  // // return reservedArray.join(" "); // g n i d o c
+  // return reservedArray.join(""); // gnidoc
+};
+
+console.log(reverseChar("coding")); // Output: "gnidoc"
+
+// Find the largest number
+const findLargest = (arr) => Math.max(...arr);
+console.log(findLargest([10, 5, 23, 8])); // Output: 23
+
+// Not used built-in-method - used for loop
+const findLarge = (arr) => {
+  let largest = arr[0];
+
+  // It technically checks arr[0] against itself on the very first iteration.
+  // for (const num of arr) {
+  //   console.log(num);
+
+  //   if (num > largest) {
+  //     largest = num;
+  //   }
+  // }
+
+  // Here start with index = 1 because of assume or suppose 1st element (zero index) of the array is largest among all numbers.
+  for (let i = 1; i < arr.length; i++) {
+    console.log(i, arr[i]);
+
+    if (arr[i] > largest) {
+      largest = arr[i];
+    }
+  }
+
+  return largest;
+};
+
+console.log(findLarge([10, 5, 23, 84])); // Output: 23
