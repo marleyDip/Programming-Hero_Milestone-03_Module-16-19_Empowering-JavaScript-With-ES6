@@ -2,11 +2,29 @@
  *
  * Scope -> Global Scope, Function Scope, Block Scope
  *
+ * A scope determines where a variable can be accessed.
+ * There are two important scopes:
+ * - Function Scope
+ * - Block Scope
+ *
  * Global Scope -> Variables declared outside of any function or block are in the global scope. They can be accessed from anywhere in the code.
  *
  * Function Scope -> Variables declared inside a function are in the function scope. They can only be accessed from within that function.
  *
  * Block Scope -> Variables declared inside a block (e.g. inside an if statement or a for loop) are in the block scope. They can only be accessed from within that block.
+ * - A block is anything inside {}.
+ * - {
+ *  // block
+ * }
+ *
+ * var → Function Scope: Although message is inside the if block, var ignores block scope.
+ * function demo() {
+ *  if (true) {
+ *      var message = "Hello";
+ *   }
+ *  console.log(message);
+ * }
+ * demo(); // Hello
  *
  *
  *
@@ -28,10 +46,102 @@
  * 8. var is not recommended to be used in modern JavaScript, while let and const are recommended to be used.
  *
  *
+ * The main differences are:
+ * - Scope
+ * - Reassignment
+ * - Redeclaration
+ * - Hoisting
+ * - Best use cases
+ *
+ * Feature	var	let	const
+ * Scope	          Function	  Block	         Block
+ * Can Reassign	    ✅ Yes	    ✅ Yes	        ❌ No
+ * Can Redeclare	  ✅ Yes	    ❌ No	        ❌ No
+ * Hoisted	        ✅ Yes	    ✅ Yes (TDZ)	  ✅ Yes (TDZ)
+ * Must Initialize	❌ No	    ❌ No	        ✅ Yes
+ * Modern Choice 	  ❌ Avoid	  ✅ Yes	        ✅ Best
+ *
+ *
+ * Interview Questions:
+ *
+ * Why is let better than var?
+ * Because let:
+ * - has block scope
+ * - prevents accidental redeclaration
+ * - avoids many bugs caused by var
+ *
+ * Why use const if objects can change?
+ * - Because const prevents reassigning the variable, not modifying the object's contents.
+ *
+ * Is const immutable?
+ * - No.
+ * - The binding is constant, but the object or array contents can still be modified unless you explicitly freeze them (for example, with Object.freeze()).
+ *
+ * No, const is not strictly the same as immutable. In most programming languages (like JavaScript, C++, and C#), const means immutable binding (the variable name cannot point to a different value or object), whereas immutable means the actual data or value cannot be changed.
+ *
+ *
+ * Best Practice:
+ * const name = "Sufian";   // Doesn't change
+ * const users = [];        // Array reference doesn't change
+ *
+ * let score = 0;           // Value changes
+ *
+ * Avoid var in modern JavaScript
+ *
+ * Which One Should You Use?
+ * - Use const by default
+ * - If the variable should never be reassigned, use const.
+ *
+ * const PI = 3.1416;
+ * const user = {};
+ * const numbers = [];
+ *
+ * - Use let when the value changes
+ * let score = 0;
+ * score++;
+ * score++;
+ *
+ * - Avoid var
+ * Only use it when maintaining older JavaScript codebases.
+ *
  */
 
-/* ==== Scope ==== */
+{
+  var a = 1;
+  let b = 2; // 'b' is declared but its value is never read.
+  const c = 3; // 'c' is declared but its value is never read.
+}
 
+console.log(a); // 1
+// console.log(b); // ReferenceError: b is not defined
+// console.log(c); // ReferenceError: c is not defined
+
+// var → Function Scope
+function demo() {
+  if (true) {
+    var message = "Hello";
+  }
+
+  console.log(message); // Hello
+}
+
+demo();
+
+// let → Block Scope
+if (true) {
+  let message = "Hello";
+}
+
+// console.log(message);
+
+// const → Block Scope
+if (true) {
+  const message = "Hello";
+}
+
+// console.log(message);
+
+/* ==== Scope ==== */
 // Global Scope
 var something = "Hello World";
 let somethingElse = "Hello World2";
@@ -130,10 +240,29 @@ const continent = "Asia";
 console.log(continent); // Asia
 
 /* ==== Hoisting ==== */
+// let and const are hoisted but remain in the Temporal Dead Zone (TDZ) until their declaration is reached.
 
 console.log(hoistedVar); // undefined; var is hoisted to the top of its scope and initialized with undefined
 var hoistedVar = "I am hoisted var";
 console.log(hoistedVar); // I am hoisted var
+
+/* JavaScript treats it like this:
+
+    var hoistedVar; // undefined
+    
+    console.log(hoistedVar);
+
+    hoistedVar = "I am hoisted var";
+
+  
+  console.log(city);
+  var city = "Dhaka";
+
+  var city; // undefined
+  console.log(city);
+  city = "Dhaka";
+
+*/
 
 // console.log(hoistedLet); // ReferenceError: Cannot access 'hoistedLet' before initialization;
 let hoistedLet = "I am hoisted let";
@@ -155,16 +284,40 @@ console.log(initializedLet); // undefined
 initializedLet = "I am initialized let"; // let can be initialized at the time of declaration or later
 console.log(initializedLet); // I am initialized let
 
+// A const variable must be initialized when declared.
 // const initializedConst; // "SyntaxError: Missing initializer in const declaration"
 const initializedConst = "I am initialized const"; // const must be initialized at the time of declaration
 console.log(initializedConst); // I am initialized const
 
 /* ==== Adds to Global Object ==== */
-
 var globalVar = "I am a global var";
 let globalLet = "I am a global let";
 const globalConst = "I am a global const";
 
-console.log(window.globalVar); // I am a global var
-console.log(window.globalLet); // undefined
-console.log(window.globalConst); // undefined
+// console.log(window.globalVar); // I am a global var
+// console.log(window.globalLet); // undefined
+// console.log(window.globalConst); // undefined
+
+/* ===== const with Arrays ===== */
+
+// Many beginners think const makes an array completely immutable.
+// This works because the array itself isn't reassigned.
+const numbers = [1, 2, 3];
+numbers.push(4);
+console.log(numbers); // [1, 2, 3, 4]
+
+// But this does not work: TypeError
+// const numbers = [1, 2, 3];
+// numbers = [4, 5, 6];
+
+/* ===== const with Objects ===== */
+const user = {
+  name: "Sufian",
+};
+user.name = "Rahim";
+console.log(user);
+
+// Not allowed:
+// user = {
+//   name: "Karim",
+// };

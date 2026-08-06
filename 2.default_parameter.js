@@ -4,6 +4,8 @@
  *
  * JavaScript default parameters allow you to initialize function parameters with default values if no value or undefined is passed to the function.
  *
+ * A default parameter is a fallback value used when a function argument is not provided.
+ *
  * syntax:
  * function functionName(parameter = defaultValue) {
  *   Function body
@@ -21,6 +23,18 @@
  *
  * 2) Does not trigger on null: Passing null is considered a valid intentional value, so the default value will not be triggered.
  *
+ * Common Mistakes:
+ * - ❌ Using = Instead of ===
+ * - ❌ Expecting null to Trigger the Default
+ * - Only undefined (or a missing argument) uses the default value.
+ *
+ * Function Call	   Parameter	     Result
+ * greet()	         Missing	       "Guest"
+ * greet(undefined)	 undefined	     "Guest"
+ * greet("Sufian")	 "Sufian"	       "Sufian"
+ * greet(null)	     null	           null
+ * greet("")	       Empty string	   ""
+ *
  */
 
 // Default parameter basic syntax
@@ -29,7 +43,7 @@ function functionName(parameter1 = defaultValue1, parameter2 = defaultValue2) {
   // function body
 }
 
-// Without default parameter
+// Without default parameter - Because no argument was passed, name is undefined.
 function greet(name) {
   return `Hello, ${name}!`;
 }
@@ -44,13 +58,48 @@ function sum(a, b) {
 console.log(sum(5, 10)); // 15
 console.log(sum(5)); // NaN (b is undefined, so the result is NaN) ==> 5 + undefined = NaN
 
-// With default parameter
+// Default parameters are used when the argument is undefined.
+// With default parameter - one
 const greetWithDefault = (name = "Guest") => {
   return `Hello, ${name}!`;
 };
 
 console.log(greetWithDefault("Bob")); // "Hello, Bob!"
 console.log(greetWithDefault()); // "Hello, Guest!"
+
+// Multiple Default Parameters
+function create(name = "Unknown", age = 18) {
+  console.log(name, age);
+}
+
+create();
+create("Sufian");
+create("Sufian", 22);
+
+// Arrow Function
+const multiplyOfArrow = (a = 1, b = 1) => a * b;
+console.log(multiplyOfArrow()); // 1
+console.log(multiplyOfArrow(5)); // 5
+console.log(multiplyOfArrow(5, 4)); // 20
+
+// Default Parameters with Objects
+function printUser(user = {}) {
+  console.log(user);
+}
+
+printUser(); // {}
+printUser({
+  name: "Sufian",
+  age: 22,
+}); // { name: 'Sufian', age: 22 }
+
+// Default Parameters with Arrays
+function printNumbers(numbers = []) {
+  console.log(numbers);
+}
+
+printNumbers(); // []
+printNumbers([1, 2, 3]); // [ 1, 2, 3 ]
 
 function makeCoffee(sugar = 1) {
   return "Coffee is prepared " + "with " + sugar + " spoon sugar";
@@ -61,6 +110,7 @@ console.log(makeCoffee(2));
 console.log(makeCoffee(2));
 console.log(makeCoffee());
 
+// Default parameters are used when the argument is undefined.
 // Default parameter with undefined
 function test(quantity = 1) {
   return quantity;
@@ -72,9 +122,9 @@ console.log(test(undefined)); // 1 (uses default value)
 console.log(test(null)); // null
 console.log(test(0)); // 0
 
-// Default parameter with null
+// Default parameter with null - null is considered an actual value, so the default is not used.
 function multiplyWithNull(a, b = 1) {
-  return a * b;
+  return a * b; // 5 * null = 0
 }
 
 console.log(multiplyWithNull(5, null)); // 0 (b is null, not defaulted)
@@ -94,7 +144,7 @@ console.log(multiplyWithoutDefault(5)); // 5 (b defaults to 1)
 
 /* ===== Advanced Usage ===== */
 
-// 1. Using Earlier Parameters
+// 1. Using Earlier Parameters - Default Value Can Be an Expression
 // Parameters are evaluated from left to right. You can use a previous parameter to calculate a default value for a later parameter:
 function calculatePrice(price, tax = price * 0.1) {
   return price + tax;
@@ -127,3 +177,31 @@ function configureTheme({ color = "blue", width = "100px" } = {}) {
 
 configureTheme({ color: "red" }); // Output: red 100px
 configureTheme(); // Output: blue 100px (fallback via the empty object default)
+
+/* ===== Comparison ====== */
+// This older approach has a problem: 0 is a falsy value, so it incorrectly becomes 100.
+function printScoreOld(score) {
+  score = score || 100;
+
+  console.log(score); // 100
+}
+
+printScoreOld(0);
+
+// With Default Parameters - This is one reason default parameters are preferred.
+function printScore(score = 100) {
+  console.log(score); // 0
+}
+
+printScore(0);
+
+// Real-World Example
+// Imagine an online shopping website.
+// If the customer doesn't specify a quantity, it defaults to 1.
+function orderProduct(product, quantity = 1) {
+  console.log(`Product: ${product}`);
+  console.log(`Quantity: ${quantity}`);
+}
+
+orderProduct("Laptop");
+orderProduct("Phone", 3);
