@@ -139,11 +139,12 @@ displayStudent(student);
  *
  * Destructuring assignment is a JavaScript syntax introduced in ES6 that allows you to unpack values from arrays or properties from objects directly into distinct variables.
  *
+ * - It does not modified the original data structure, making your code significantly cleaner and faster to read.
+ *
  * Destructuring in JavaScript is a feature that allows you to extract values from arrays or properties from objects and assign them to variables in a concise way.
  *
  * Destructuring is a JavaScript syntax that lets you unpack values from arrays or extract properties from objects into separate variables.
  *
- * It does not modified the original data structure, making your code significantly cleaner and faster to read.
  *
  * Object Destructuring:
  * - Object destructuring extracts data using property names.
