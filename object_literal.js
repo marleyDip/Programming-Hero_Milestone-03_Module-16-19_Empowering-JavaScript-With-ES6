@@ -157,6 +157,123 @@ console.log(account[uniqueKey]); // 9876
 
 /**
  *
+ * Nested Object
+ *
+ * You can create a nested object in JavaScript by defining an object as a property inside another object using object literal notation. "{ }"
+ *
+ * - When we say "an object inside another object," the word "another" refers to the outer object or container object, which is commonly called the parent object.
+ *
+ * To put it simply:
+ * - The Parent Object (Outer): The main object that contains everything.
+ * - The Child/Nested Object (Inner): The object that lives inside one of the parent object's properties.
+ *
+ * In this example:
+ * - car is the parent object.
+ * - engine is an object itself, but because it is stored inside the car object as a property, car is considered "another object" (the parent) relative to engine.
+ *
+ * "An object as a property inside another object using object literal notation" কথাটির অর্থ হলো— সেকেন্ড ব্র্যাকেট {} (curly braces) ব্যবহার করে সরাসরি কোনো অবজেক্ট তৈরি করার সময়, তার ভেতরে একটি প্রপার্টি বা বৈশিষ্ট্যের মান হিসেবে আরেকটি সম্পূর্ণ অবজেক্ট বসানো। প্রোগ্রামিংয়ের ভাষায় একে নেস্টেড অবজেক্ট (Nested Object) বলা হয়।
+ *
+ * মূল ধারণা ও ব্যাখ্যা:
+ * - অবজেক্ট লিটারেল নোটেশন (Object Literal Notation): কোডে সরাসরি সেকেন্ড ব্র্যাকেট {} দিয়ে কী-ভ্যালু (key-value) জোড়ায় অবজেক্ট লেখার নিয়ম।
+ *
+ * - অন্য অবজেক্টের ভেতরে প্রপার্টি (Object as a property): প্রধান অবজেক্টের কোনো একটি কী-এর মান (value) হিসেবে শুধু সাধারণ ডেটা (যেমন স্ট্রিং বা নম্বর) না দিয়ে আরেকটি অবজেক্ট ব্যবহার করা।
+ *
+ * 1. Literal Notation (Static)
+ * - Define everything all at once using curly braces {}.
+ *
+ * 2. Dot or Bracket Notation (Dynamic)
+ * - Create an empty outer object first, then add the nested layers step-by-step.
+ *
+ * 3. Using Variables
+ * - You can create separate objects first and then plug them into a parent container.
+ *
+ * Safe navigation (Optional Chaining):
+ * - Use user.address?.city to safely read nested properties without crashing if address happens to be undefined
+ *
+ */
+
+/* ===== Nested Object ===== */
+// You can create a nested object in JavaScript by defining an object as a property inside another object using object literal notation.
+
+// This is the PARENT object (the "another" object)
+const car = {
+  brand: "Tesla",
+  model: "Model S",
+
+  // This property holds a NESTED object (an object inside the parent) - (an object as a property)
+  engine: {
+    type: "Electric",
+    horsepower: 670,
+    isLucid: false,
+  },
+};
+
+// In this example: car is the parent object.
+// engine is an object itself, but because it is stored inside the car object as a property, car is considered "another object" (the parent) relative to engine.
+
+// এখানে address হলো একটি অবজেক্ট, যা person নামক আরেকটি অবজেক্টের ভেতরে প্রপার্টি হিসেবে আছে।
+const person = {
+  name: "রহিম",
+  age: 25,
+  address: {
+    // এটি প্রধান অবজেক্টের ভেতরে আরেকটি অবজেক্ট (প্রপার্টি)
+    city: "ঢাকা",
+    country: "বাংলাদেশ",
+  },
+};
+
+// 1. Literal Notation (Static)
+// Define everything all at once using curly braces {}.
+const company = {
+  brand: "TechCorp",
+  departments: {
+    engineering: {
+      teamSize: 45,
+      lead: "Sarah",
+    },
+    marketing: {
+      teamSize: 12,
+      lead: "James",
+    },
+  },
+};
+
+// 2. Dot or Bracket Notation (Dynamic)
+// Create an empty outer object first, then add the nested layers step-by-step.
+
+// Step 1: Create the parent
+const carData = {};
+
+// Step 2: Assign an object to a property
+carData.specifications = {};
+
+// Step 3: Add properties to the nested object
+carData.specifications.engine = "V8";
+carData.specifications.hp = 450;
+
+// Alternative: Using bracket notation for dynamic keys
+const keyName = "features";
+carData[keyName] = { autopilot: true };
+
+console.log(carData); // { specifications: { engine: 'V8', hp: 450 }, features: { autopilot: true } }
+
+// 3. Using Variables
+// You can create separate objects first and then plug them into a parent container.
+const physicalStats = { height: "180cm", weight: "75kg" };
+
+const athlete = {
+  name: "Jordan",
+  sport: "Basketball",
+  stats: physicalStats, // Nesting the predefined object
+};
+
+// How to Access the Data
+// Dot notation: user.address.city outputs "New York".
+// Bracket notation: user["address"]["city"] outputs "New York".
+// Safe navigation (Optional Chaining): Use user.address?.city to safely read nested properties without crashing if address happens to be undefined.
+
+/**
+ *
  * Object Literal vs JSON (JavaScript Object Notation)
  *
  * The main difference is that an object literal is a live JavaScript code structure, while JSON (JavaScript Object Notation) is a strict text-only data format.
