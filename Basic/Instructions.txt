@@ -1,0 +1,15 @@
+এই মডিউলে যা যা শিখবে
+
+ => Primitive and Non-Primitive Data Types
+ => Null vs Undefined and Truthy Falsy
+ => ==vs=== and Scope_Hoisting
+
+ => closure (Advanced)
+ => Callback Function
+
+ => Pass by value, pass by reference, Pre and post increment
+
+ => Array Power Methods — map, forEach, filter, find
+ => Slice And Reduce
+
+

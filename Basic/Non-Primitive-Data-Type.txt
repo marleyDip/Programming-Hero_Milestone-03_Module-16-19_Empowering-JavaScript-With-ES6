@@ -1,0 +1,58 @@
+In JavaScript, there is only one official non-primitive data type: the Object.
+
+=> However, because JavaScript treats several fundamental structures as specialized variations of objects, the non-primitive category (also known as Reference Types) effectively includes: 
+  1. Objects.
+  2. Arrays.
+  3. Functions.  
+
+=> Unlike non-primitive data types which store a single immutable value directly in stack memory.
+
+=> Non-primitive data types are complex, mutable, and stored by reference in heap memory.  
+
+
+
+Core Non-Primitive Categories -
+
+1. Standard objects: Collections of key-value pairs used to store structured data.
+
+    => const user = { name: "Alice", age: 25 };
+
+2. Arrays: Ordered lists of data indexed numerically, which are under-the-hood specialized objects.
+In JavaScript, an array is a special type of object specifically designed to store ordered, index-based collections of data.
+
+    => const colors =["red", "green", "blue"];
+
+3. Functions: Executable blocks of code that are actually "callable objects" in JavaScript.
+
+    => function greet() { return "Hello!"; }
+
+4. Built-in Specialized Objects: Other native objects used for specific tasks, such as -
+
+    => Date
+    => RegExp
+    => Map
+    => Set
+
+
+
+Key characteristics -
+
+1. Mutable: You can modify their properties, values, or elements directly without creating a whole new copy in memory.
+
+2. Stored by Reference: Assigning a non-primitive variable to a new variable copies the memory address pointer, not the value itself. Modifying one will affect the other.
+
+3. Dynamic Size: They can grow or shrink dynamically as you add or remove properties and values.
+
+
+
+Quick Comparison: 
+
+Feature             Primitive Types (e.g., String, Number, Boolean)        Non-Primitive Types (Objects, Arrays)
+
+Data Held           Single, simple value                                   Complex collection of values
+
+Memory Allocation   Stack memory                                           Heap memory
+
+Immutability        Immutable (cannot be altered)                          Mutable (can be altered)
+
+Copy Behavior       Copied by value                                        Copied by reference address
