@@ -77,6 +77,7 @@ This module explores important JavaScript concepts beyond ES6 fundamentals. It f
 ```text
 Module-17/
 │
+├── Basic/
 ├── 1.data_type.js/
 ├── 10.reduce_and_slice.js/
 ├── 2.undefined_vs_null_and_truthy_falsy.js/
