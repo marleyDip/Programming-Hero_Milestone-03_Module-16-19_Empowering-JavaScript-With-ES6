@@ -1,3 +1,80 @@
+const myUser = {
+  name: "Deep",
+  age: 27,
+  something: [20, 30, 40, 50],
+  company: {
+    name: "Programming Hero",
+    address: {
+      location: "Mirpur DOES",
+      street: "123 bypass",
+    },
+  },
+  "my-address": "Road 123, Somespur",
+};
+
+console.log(myUser);
+
+// access property: Dot notation, and bracket notation
+
+// Dot notation - Predictable
+console.log(myUser.name, myUser.age, myUser.something, myUser.company.name);
+
+// Bracket Notation - Dynamic
+console.log(myUser["company"]);
+
+const key = "company";
+console.log(myUser[key]);
+
+// console.log(myUser."my-address");
+console.log(myUser["my-address"]);
+
+// Optional Chaining (?.)
+console.log(myUser.company.address.location);
+
+const myUser2 = {
+  name: "Deep",
+  age: 27,
+  something: [20, 30, 40, 50],
+};
+
+// console.log(myUser2.company.address.location); // TypeError: Cannot read properties of undefined (reading 'address')
+
+// Here we want to access a nested properties which is not exists means undefined, undefined nested object property key access gives error, thats why use optional chaining
+// If the value before the ?. operator is nullish (null or undefined), the entire expression immediately stops executing and returns undefined.
+console.log(myUser2?.company?.address?.location); // undefined
+
+// If we want default value instead of undefined, used Nullish Coalescing Operator (??) - it only works with falsy nullish value - null or undefined. not work with other falsy value - 0, false, ""
+console.log(myUser2?.company?.address?.location ?? "Dhaka, Bangladesh"); // undefined
+
+// Object Loop
+// for...of used for arrays (direct access values of arrays), here used for...in for loop through the object keys
+// Unlike arrays, object cannot be looped over directly with for...of. Instead, use Object.keys(), Object.values(), Object.entries()
+// If used for...of directly, it throws a typeError because plain objects are not iterable.
+for (const key in myUser) {
+  console.log(key);
+  // console.log(key, myUser.key);
+  console.log(key, myUser[key]);
+}
+
+const userKeys = Object.keys(myUser);
+const userValues = Object.values(myUser);
+const userKeyValue = Object.entries(myUser);
+
+console.log(userKeys); // []
+console.log(userValues); // []
+console.log(userKeyValue); // [ [ ], [ ] ], Each pair is also array like [ [key, value] ]
+
+for (let key of userKeys) {
+  console.log("Using for...of", key, myUser[key]);
+}
+
+for (let elem of userKeyValue) {
+  // Destructuring element, pair of array userKeyValue
+  const [key, value] = elem;
+
+  console.log("Using for...of", key, value);
+}
+
 /**
  *
  * Nested Object, Optional Chaining (?.) & Object Looping
@@ -69,11 +146,11 @@
  * - Loops through the object's keys.
  *
  * Comparison
- * Method	          Returns	              Best For
- * for...in	          Keys	                  Simple object iteration
- * Object.keys()	  Array of keys	          Keys only
- * Object.values()	  Array of values	      Values only
- * Object.entries()	  Array of [key, value]	  Keys and values together
+ * Method	            Returns	                  Best For
+ * for...in	          Keys	                    Simple object iteration
+ * Object.keys()	    Array of keys	            Keys only
+ * Object.values()	  Array of values	          Values only
+ * Object.entries()	  Array of [key, value]	    Keys and values together
  *
  *
  *

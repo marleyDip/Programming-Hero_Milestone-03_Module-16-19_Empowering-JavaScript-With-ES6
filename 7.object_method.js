@@ -1,3 +1,68 @@
+const myUser = {
+  name: "John Doe",
+  age: 35,
+  id: 40003,
+};
+
+const userKeys = Object.keys(myUser);
+const userValues = Object.values(myUser);
+
+// To know the length of the object total keys
+console.log(userKeys.length);
+console.log(userValues.length);
+
+for (let key of userKeys) {
+  console.log(key, myUser[key]);
+}
+
+const userKeyValue = Object.entries(myUser);
+// Gives array of array - here each element is array of key-value pair
+console.log(userKeyValue);
+
+for (let elem of userKeyValue) {
+  const [key, value] = elem;
+  console.log(key, value);
+}
+
+// delete method
+delete myUser.id;
+delete myUser["age"];
+console.log(myUser);
+
+// seal - add and delete not allowed but still edit is allowed
+const bankAccount = {
+  accountNumber: "1234",
+  balance: 5000,
+};
+
+Object.seal(bankAccount);
+console.log(Object.isSealed(bankAccount));
+
+// add, delete
+delete bankAccount.balance;
+bankAccount.nomineeName = "Something";
+
+// update or modify
+bankAccount.balance = 6000;
+
+console.log(bankAccount);
+
+// freeze - add, edit, and delete not allowed
+const birthCertificate = {
+  name: "Deep",
+  birthDate: "15-10-2000",
+  cerNumber: "423424234234234",
+};
+
+Object.freeze(birthCertificate);
+console.log(Object.isFrozen(birthCertificate));
+
+delete birthCertificate.cerNumber;
+birthCertificate.new = "test";
+birthCertificate.cerNumber = "123";
+
+console.log(birthCertificate);
+
 /**
  *
  * JavaScript Object Methods — Keys, Values, Entries, Delete, Seal, Freeze
