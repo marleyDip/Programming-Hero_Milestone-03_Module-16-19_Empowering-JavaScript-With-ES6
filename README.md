@@ -77,9 +77,17 @@ This module explores important JavaScript concepts beyond ES6 fundamentals. It f
 ```text
 Module-17/
 │
-├── Practice/
-├── Tasks/
-├── Notes/
+├── 1.data_type.js/
+├── 10.reduce_and_slice.js/
+├── 2.undefined_vs_null_and_truthy_falsy.js/
+├── 3.==vs===,scope_and_hoisting.js/
+├── 4.hoisting.js/
+├── 5.closure.js/
+├── 6.callback_function.js/
+├── 7.pass_by_value_pass_by_ref.js/
+├── 8.pre_and_post_increment_decrement.js/
+├── 9.map_foreach_filter_find.js/
+├── practice-tasks.js/
 └── README.md
 ```
 
