@@ -127,5 +127,11 @@ By completing this module, I learned how to:
 
 ---
 
+## 📌 Module Status
+
+✅ Completed
+
+---
+
 ## ⭐ Thanks for visiting this repository!
 If you find it helpful, feel free to **star** the repository.
