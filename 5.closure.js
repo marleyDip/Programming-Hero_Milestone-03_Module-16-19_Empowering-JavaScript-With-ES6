@@ -81,7 +81,10 @@ console.log("JuiceBar:", juiceBarCashCounter(500)); // 750
 /**
  *
  * Lexical Scope
- * - Lexical Scope is the foundation for understanding Closures in JavaScript.
+ *
+ * - Scope means: Where a variable can be accessed in your code.
+ *
+ *  - Lexical Scope is the foundation for understanding Closures in JavaScript.
  * - Lexical scope means a function can access variables based on where the function is written in the code.
  * - In simple words: Where a function is created determines which variables it can access.
  *
