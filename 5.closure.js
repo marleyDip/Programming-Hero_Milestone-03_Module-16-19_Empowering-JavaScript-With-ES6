@@ -84,7 +84,7 @@ console.log("JuiceBar:", juiceBarCashCounter(500)); // 750
  *
  * - Scope means: Where a variable can be accessed in your code.
  *
- *  - Lexical Scope is the foundation for understanding Closures in JavaScript.
+ * - Lexical Scope is the foundation for understanding Closures in JavaScript.
  * - Lexical scope means a function can access variables based on where the function is written in the code.
  * - In simple words: Where a function is created determines which variables it can access.
  *
@@ -183,6 +183,42 @@ console.log("JuiceBar:", juiceBarCashCounter(500)); // 750
  *
  * Real-World Importance
  * Closures: Lexical scope makes closures possible. A closure is created when an inner function retains access to its parent function's scope even after the parent function has finished executing.
+ *
+ *
+ * How Closure Works
+ * Think about the scopes like this:
+ * Global Scope
+ * │
+ * └── outer()
+ *      │
+ *      ├── message = "Hello"
+ *      │
+ *      └── inner()
+ *            │
+ *            └── remembers message
+ * - When outer() returns inner, the inner function doesn't forget the variables it needs from the outer scope.
+ *
+ * Conceptually:
+ * myFunction
+ *     ↓
+ * inner function
+ *     ↓
+ * remembers outer scope
+ *     ↓
+ * message = "Hello"
+ *
+ *
+ * Closure Creates Private Data
+ * - This is called data privacy / encapsulation.
+ *
+ * Why Closures Are Useful
+ * Closures are commonly useful for:
+ * 1. Data Privacy
+ * 2. Counters
+ * 3. Function Factories
+ * 4. Callbacks
+ * 5. Event Handlers
+ *
  *
  */
 
@@ -386,3 +422,295 @@ function outer7() {
 
 const fn = outer7();
 fn(); // 100
+
+// The Classic Closure Example
+// Because counterFunction remembers the count variable.
+// The outer function doesn't need to execute again.
+function outerFunction1() {
+  let count = 0;
+
+  // function innerFunction() {
+  // return function innerFunction() {
+  // return function () {
+  return () => {
+    count++;
+    console.log("The Count:", count);
+  };
+
+  // return innerFunction;
+}
+
+const counterFunction = outerFunction1();
+
+counterFunction(); // 1
+counterFunction(); // 2
+counterFunction(); // 3
+
+/* Why Does count Remember Its Value?
+
+This is the key idea.
+When you do: const counterFunction = outer();
+outer() runs: count = 0 and returns: inner()
+
+The returned function maintains access to count.
+Then: counterFunction(); changes: 0 → 1
+Next: counterFunction(); changes: 1 → 2
+Next: counterFunction(); changes: 2 → 3
+
+The variable isn't recreated every time. */
+
+// Closure Creates Private Data
+// This is one of the most useful applications of closures.
+
+// This code creates a private state using a closure in JavaScript. The balance variable is hidden inside the outer function.
+// It cannot be accessed from the outside. You can only change or see the balance by using the deposit and getBalance methods.
+
+// Closure: The inner functions remember the balance variable even after createBankAccount finishes running.
+// Encapsulation: No other code can change balance directly. This keeps the data safe from bugs.
+
+// 1. "Creates a private state..."
+// In JavaScript, variables declared inside a function cannot be accessed from outside that function.
+// The line let balance = 0; is a private state.
+// It is protected because it lives only inside the scope of createBankAccount.
+
+// 2. "...using a closure..."
+// A closure happens when an inner function remembers and accesses variables from its outer function, even after the outer function has finished running.
+// createBankAccount() runs and returns the object.
+// Normally, its local variables would be deleted from memory.
+// However, deposit() and getBalance() are inner functions that "close over" the balance variable.
+// They keep balance alive in memory exclusively for themselves.
+
+// 3. "It cannot be accessed from the outside."
+// Because balance is not a property of the returned object, you cannot touch it directly using dot notation.
+
+// 4. "You can only change or see the balance by using the deposit and getBalance methods."
+// The returned object acts like a control panel. You cannot touch the internal wiring (balance), but you can use the buttons provided to you:
+// To change it: You must call account.deposit(50). The deposit method safely modifies the inner balance.
+// To see it: You must call account.getBalance(). The getBalance method safely reads and returns the inner balance.
+
+// This specific part of the code creates and returns an object containing two methods (deposit and getBalance) that have exclusive access to the private balance variable.
+
+// This defines a factory function named createBankAccount.
+// Every time you call this function, it sets up a brand new, isolated account environment.
+function createBankAccount() {
+  //  Private State Variable
+  // Due to lexical scoping, it is completely hidden from the outside world.
+  // It acts as private data that cannot be read or changed directly from outside the function.
+  let balance = 0;
+  // balance = 100;
+
+  // Returning the Method Object
+  // The function outputs (returns) a plain JavaScript object.
+  // This object serves as the public interface to interact with your private balance.
+  return {
+    // balance: balance,
+
+    // The Deposit Method - This is an shorthand syntax for an object method - ES6
+    // It modifies the private balance variable by adding the amount.
+    // It forms a closure, meaning it remembers and retains access to the balance variable even after createBankAccount() finishes executing.
+    deposit(amount) {
+      balance += amount;
+    },
+
+    // Traditional Syntax - ES5
+    // deposit: function (amount) {
+    //   balance = balance + amount;
+    // },
+
+    // The GetBalance Method
+    // This is another object method.
+    // It safely reads and returns the current value of the private balance variable.
+    // The closing brackets end the object literal and the outer function.
+    getBalance() {
+      return balance;
+    },
+
+    // Arrow function
+    // getBalance: () => {
+    //   return balance;
+    // },
+  };
+}
+
+// Key Concept: Closure
+// The returned object methods "trap" the balance variable in their scope.
+// Even though createBankAccount() runs and finishes, the methods keep a live link to that specific balance variable in memory.
+
+const account = createBankAccount();
+const myAccount = createBankAccount();
+
+myAccount.balance = 5000; // This just creates a useless public property. It does NOT change the real inner balance.
+console.log(myAccount.balance); // undefined
+
+account.deposit(500);
+console.log("The 1st account balance", account.getBalance()); // 500
+
+myAccount.deposit(1000);
+console.log("The 2nd account balance", myAccount.getBalance()); // 1000
+
+account.deposit(1500);
+myAccount.deposit(500);
+
+account.deposit(2500);
+myAccount.deposit(1200);
+
+myAccount.deposit(1300);
+account.deposit(3500);
+
+console.log("The 1st account balance", account.getBalance()); // 8000
+console.log("The 2nd account balance", myAccount.getBalance()); // 4000
+
+// Real-Life Example — Shopping Cart
+// Imagine you're building an e-commerce application.
+// The total variable is protected inside the closure.
+const createCart = () => {
+  let total = 0;
+
+  return {
+    addItem(price) {
+      total += price;
+    },
+
+    getTotal() {
+      return total;
+    },
+  };
+};
+
+const cart = createCart();
+
+cart.addItem(1000);
+cart.addItem(500);
+cart.addItem(200);
+
+console.log("The total price for specific customer:", cart.getTotal());
+
+// Multiple Closures Have Separate Data
+// Each call to: createCounter()
+// creates a new execution environment.
+// Conceptually: counter1 -> count = 0 and counter2 -> count = 0
+// They don't share the same count.
+const createCounterFunction = () => {
+  let count = 10;
+
+  return function () {
+    count++;
+    return count;
+  };
+};
+
+// Closure Doesn't Mean "Copying" the Variable
+// The function isn't getting a new copy of count each time.
+// It maintains access to the same variable in its lexical environment.
+
+const counter8 = createCounterFunction();
+const counter9 = createCounterFunction();
+
+console.log(counter8()); // 11
+console.log(counter8()); // 12
+
+console.log(counter9()); // 11
+console.log(counter9()); // 12
+
+// Closure with Parameters
+// Each returned function remembers its own name.
+function greetFunction(name = "Guest") {
+  return function () {
+    console.log(`Hello ${name}`);
+  };
+}
+
+const greetSufian = greetFunction("Sufian");
+const greetRahim = greetFunction("Rahim");
+const greetDefault = greetFunction();
+
+greetSufian();
+greetRahim();
+greetDefault();
+
+// Closure with Arrow Functions
+// Closures work exactly the same way with arrow functions.
+function createMultiplier(number) {
+  return (value) => {
+    return value * number;
+  };
+}
+
+const double = createMultiplier(2);
+const triple = createMultiplier(3);
+
+console.log(double(5)); // 10
+console.log(triple(5)); // 15
+
+// Closure in Loops
+// With let
+// let creates block-scoped bindings for the loop iterations.
+for (let i = 1; i <= 3; i++) {
+  setTimeout(() => {
+    // console.log(i);
+  }, 1000);
+}
+
+for (var i = 1; i <= 3; i++) {
+  setTimeout(() => {
+    // console.log(i);
+  }, 1000);
+}
+
+// Why Closures Are Useful
+// Closures are commonly useful for:
+
+// 1. Data Privacy
+function createUser0() {
+  let password = "secret";
+
+  return function () {
+    return password;
+  };
+}
+
+// 2. Counters
+function counter0() {
+  let count = 0;
+
+  return () => ++count;
+}
+
+// 3. Function Factories
+function createMultiplier0(x) {
+  return (y) => x * y;
+}
+
+// 4. Callbacks
+function greet0(name) {
+  setTimeout(() => {
+    console.log(name);
+  }, 1000);
+}
+// The callback remembers name.
+
+// 5. Event Handlers
+// Closures are heavily used when event handlers need access to variables from their surrounding scope.
+
+// Real-World Example — Login Attempts
+// Imagine you want to track failed login attempts.
+function createLoginSystem() {
+  let attempts = 0;
+
+  return function () {
+    attempts++;
+
+    if (attempts >= 3) {
+      return "Account Locked";
+    }
+
+    return `Attempt ${attempts}`;
+  };
+}
+
+const login = createLoginSystem();
+
+console.log(login());
+console.log(login());
+console.log(login());
+console.log(login());
